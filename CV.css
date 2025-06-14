@@ -26,7 +26,7 @@ body {
     --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 
     /* Đường dẫn ảnh nền cố định cho mục sở thích (chế độ sáng) */
-    --hobby-bg-image: url('Chim-ung.jpg'); /* Đổi tên file ảnh thành không dấu và không khoảng trắng */
+    --hobby-bg-image: url('ảnh\ Chim\ ưng.jpg'); /* Đổi tên file ảnh thành không dấu và không khoảng trắng */
 
     /* Biến cho màu hover của nav icons */
     --nav-icon-hover-bg: var(--primary-color);
