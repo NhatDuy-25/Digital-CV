@@ -645,20 +645,24 @@ footer {
 
 /* --- Modal chỉnh sửa thông tin (Edit Modal) --- */
 
-/* Lớp phủ nền modal */
+/* Lớp phủ nền modal - Giữ nguyên như cũ */
 .edit-modal-overlay {
-    display: none; /* Mặc định ẩn */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Nền mờ */
+    background-color: rgba(0, 0, 0, 0.6); 
     z-index: 1050; 
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(5px); 
     -webkit-backdrop-filter: blur(5px); 
+    /* Thêm scroll cho overlay nếu nội dung modal quá dài */
+    overflow-y: auto; /* Rất quan trọng! Cho phép cuộn nếu modal cao hơn màn hình */
+    padding: 20px 0; /* Thêm padding trên dưới để modal không quá sát mép */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
 }
 
 .edit-modal-overlay.active {
@@ -668,16 +672,20 @@ footer {
 /* Hộp modal */
 .edit-modal-content {
     background-color: var(--section-bg);
-    padding: 30px;
+    padding: 25px; /* Giảm padding một chút để tiết kiệm không gian */
     border-radius: 12px; 
     box-shadow: var(--box-shadow);
     width: 90%;
-    max-width: 600px; 
+    max-width: 500px; /* Giảm max-width từ 600px xuống 500px */
+    /* Thêm chiều cao tối đa và cho phép cuộn */
+    max-height: 90vh; /* Giới hạn chiều cao modal là 90% chiều cao viewport */
+    overflow-y: auto; /* Cho phép cuộn nội dung bên trong modal nếu cần */
     position: relative;
     transform: translateY(-20px); 
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     border: 1px solid var(--border-color); 
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
 }
 
 .edit-modal-overlay.active .edit-modal-content {
@@ -685,29 +693,29 @@ footer {
     opacity: 1;
 }
 
-/* Tiêu đề modal */
+/* Tiêu đề modal - Giữ nguyên */
 .edit-modal-content h2 {
     color: var(--primary-color);
     font-family: 'Montserrat', sans-serif;
     margin-top: 0;
-    margin-bottom: 25px; 
+    margin-bottom: 20px; /* Giảm margin-bottom một chút */
     text-align: center;
-    font-size: 1.8em;
+    font-size: 1.6em; /* Giảm kích thước font */
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    padding-bottom: 8px; /* Giảm padding-bottom */
 }
 
-/* Các trường form trong modal */
+/* Các trường form trong modal - Giữ nguyên, đã khá tốt */
 .edit-modal-content .form-group {
-    margin-bottom: 20px; 
+    margin-bottom: 15px; /* Giảm khoảng cách giữa các nhóm form */
 }
 
 .edit-modal-content label {
     display: block;
-    margin-bottom: 8px; 
+    margin-bottom: 6px; /* Giảm khoảng cách giữa label và input */
     color: var(--text-color);
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: 0.9em; /* Giảm kích thước font */
 }
 
 .edit-modal-content input[type="text"],
@@ -715,10 +723,10 @@ footer {
 .edit-modal-content input[type="tel"],
 .edit-modal-content textarea {
     width: 100%;
-    padding: 12px; 
+    padding: 10px; /* Giảm padding */
     border: 1px solid var(--border-color);
     border-radius: 8px; 
-    font-size: 1em;
+    font-size: 0.95em; /* Giảm kích thước font */
     color: var(--text-color);
     background-color: var(--background-color); 
     box-sizing: border-box; 
@@ -736,17 +744,17 @@ footer {
 
 .edit-modal-content textarea {
     resize: vertical; 
-    min-height: 80px; 
+    min-height: 60px; /* Giảm chiều cao tối thiểu */
 }
 
-/* Nút đóng modal */
+/* Nút đóng modal - Giữ nguyên */
 .edit-modal-content .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 10px; /* Dịch lên trên một chút */
+    right: 10px; /* Dịch sang phải một chút */
     background: none;
     border: none;
-    font-size: 1.8em; 
+    font-size: 1.5em; /* Giảm kích thước */
     color: var(--secondary-color);
     cursor: pointer;
     transition: color 0.3s ease;
@@ -760,18 +768,22 @@ footer {
 .edit-modal-content .modal-actions {
     display: flex;
     justify-content: flex-end; 
-    gap: 15px; 
-    margin-top: 30px; 
+    gap: 10px; /* Giảm khoảng cách giữa các nút */
+    margin-top: 20px; /* Giảm khoảng cách trên từ form đến nút */
+    flex-wrap: wrap; /* Rất quan trọng: cho phép các nút xuống dòng nếu không đủ chỗ */
+    justify-content: center; /* Căn giữa các nút khi xuống dòng */
 }
 
 .edit-modal-content .modal-actions button {
-    padding: 12px 25px; 
+    padding: 10px 20px; /* Giảm padding cho nút */
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.9em; /* Giảm kích thước font */
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex-grow: 1; /* Cho phép các nút giãn ra */
+    max-width: 150px; /* Giới hạn chiều rộng tối đa của mỗi nút */
 }
 
 .edit-modal-content .modal-actions .save-btn {
@@ -793,6 +805,43 @@ footer {
     color: var(--text-color);
 }
 
+/* --- RESPONSIVE DESIGN (Điều chỉnh lại phần modal trong media query) --- */
+@media (max-width: 768px) {
+    /* ... (các phần responsive khác giữ nguyên) ... */
+
+    /* Responsive cho modal trên màn hình nhỏ hơn */
+    .edit-modal-content {
+        width: 95%; /* Giữ nguyên 95% */
+        padding: 15px; /* Giảm padding thêm trên mobile */
+        max-height: 95vh; /* Tăng max-height một chút trên mobile */
+    }
+    .edit-modal-content h2 {
+        font-size: 1.4em; /* Giảm kích thước font tiêu đề */
+        margin-bottom: 15px;
+    }
+    .edit-modal-content label {
+        font-size: 0.85em; /* Giảm kích thước font label */
+    }
+    .edit-modal-content input[type="text"],
+    .edit-modal-content input[type="email"],
+    .edit-modal-content input[type="tel"],
+    .edit-modal-content textarea {
+        padding: 8px; /* Giảm padding input */
+        font-size: 0.9em; /* Giảm kích thước font input */
+    }
+    .edit-modal-content .modal-actions {
+        flex-direction: column; /* Nút xếp chồng lên nhau */
+        align-items: stretch; /* Kéo dài nút ra */
+        gap: 8px; /* Giảm khoảng cách giữa các nút */
+        margin-top: 15px; /* Giảm khoảng cách trên */
+    }
+    .edit-modal-content .modal-actions button {
+        width: 100%;
+        margin-bottom: 0; /* Đảm bảo không có margin dưới thừa khi là column */
+        font-size: 0.95em; /* Kích thước font nút */
+        max-width: unset; /* Bỏ giới hạn max-width để nó chiếm 100% */
+    }
+}
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 992px) {
     .personal-info-column {
