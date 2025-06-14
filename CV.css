@@ -10,40 +10,7 @@ body {
     min-height: 100vh;
     overflow: hidden; /* Để quản lý cuộn trong các cột cụ thể */
 }
-/* Đảm bảo profile-header có position relative để các icon con định vị tuyệt đối */
-.personal-info-column .profile-header {
-    position: relative; /* Rất quan trọng! */
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-}
 
-/* Định vị icon chuyển đổi theme */
-.theme-switch-wrapper.icon-position {
-    position: absolute;
-    top: 25px; /* Điều chỉnh để ngang hàng với edit icon */
-    right: 300px; /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH - Điều chỉnh vị trí bên phải, cách edit icon một khoảng */
-    z-index: 10; /* Đảm bảo nó nằm trên các phần tử khác */
-    /* Có thể ẩn text "Chế độ tối" nếu không muốn hiển thị cùng icon */
-    /* .theme-switch-wrapper.icon-position .theme-text {
-        display: none;
-    } */
-}
-
-/* Đảm bảo icon chỉnh sửa vẫn ở vị trí cũ, nếu cần thì điều chỉnh lại */
-.edit-icon-near-avatar {
-    position: absolute;
-    top: 25px; /* Giữ nguyên hoặc điều chỉnh nếu cần */
-    right: 25px; /* Giữ nguyên hoặc điều chỉnh nếu cần */
-    color: var(--primary-color);
-    font-size: 20px;
-    background-color: var(--background-color);
-    padding: 8px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    z-index: 10;
-}
 /* --- CHẾ ĐỘ SÁNG (LIGHT THEME) --- */
 :root {
     --background-color: #f4f7f6;
@@ -57,9 +24,9 @@ body {
     --section-bg: #fff;
     --link-color: #007bff;
     --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    
+
     /* Đường dẫn ảnh nền cố định cho mục sở thích (chế độ sáng) */
-    --hobby-bg-image: url('ảnh Chim ưng.jpg'); /* Đổi tên file ảnh thành không dấu và không khoảng trắng */
+    --hobby-bg-image: url('Chim-ung.jpg'); /* Đổi tên file ảnh thành không dấu và không khoảng trắng */
 
     /* Biến cho màu hover của nav icons */
     --nav-icon-hover-bg: var(--primary-color);
@@ -79,13 +46,13 @@ body.dark-theme {
     --section-bg: #32363e;
     --link-color: #8be9fd;
     --box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    
+
     /* Đường dẫn ảnh nền cố định cho mục sở thích (chế độ tối) */
-    --hobby-bg-image: url('ảnh Chim ưng.jpg'); /* Sử dụng cùng ảnh hoặc đổi ảnh khác nếu muốn */ 
+    --hobby-bg-image: url('ảnh\ Chim\ ưng.jpg'); /* Sử dụng cùng ảnh hoặc đổi ảnh khác nếu muốn */
 
     /* Biến cho màu hover của nav icons trong dark theme */
     --nav-icon-hover-bg: var(--primary-color);
-    --nav-icon-hover-color: var(--background-color);  
+    --nav-icon-hover-color: var(--background-color);
 }
 
 /* --- NAVIGATION BAR (MENU CỐ ĐỊNH BÊN TRÁI) --- */
@@ -100,9 +67,19 @@ body.dark-theme {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     box-shadow: var(--box-shadow);
     z-index: 1000;
+}
+
+/* Thêm một container để nhóm các icon menu */
+.nav-links-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Phân bố đều các icon trong nhóm này */
+    flex-grow: 1; /* Cho phép nhóm này chiếm toàn bộ không gian còn lại */
+    width: 100%; /* Đảm bảo nhóm chiếm hết chiều rộng của nav bar */
+    padding-bottom: 20px; /* Thêm padding để tạo khoảng cách với theme switch */
 }
 
 .cv-nav-icons a {
@@ -122,12 +99,14 @@ body.dark-theme {
 
 /* Theme Switch (Chuyển đổi chủ đề) */
 .theme-switch-wrapper {
-    position: absolute;
-    bottom: 30px;
+    /* Đảm bảo nó tuân theo luồng Flexbox của .cv-nav-icons */
+    position: static; 
+    margin-bottom: 20px; /* Khoảng cách từ dưới cùng của thanh nav */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    /* Loại bỏ `.icon-position` khỏi selector này vì nó đã được di chuyển */
 }
 
 .theme-switch {
@@ -195,10 +174,9 @@ input:checked + .slider:before {
 
 /* --- PERSONAL INFO COLUMN (CỘT THÔNG TIN CÁ NHÂN CỐ ĐỊNH) --- */
 .personal-info-column {
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    width: 350px; /* Giảm từ 500px, bạn có thể điều chỉnh thêm */
-    min-width: 250px; /* Giữ lại nếu muốn nó không quá nhỏ */
-    max-width: 600px; /* Giảm từ 1000px, hoặc bỏ nếu muốn tùy ý */
+    width: 350px; 
+    min-width: 250px; 
+    max-width: 600px; 
     background-color: var(--section-bg);
     padding: 20px;
     border-right: 1px solid var(--border-color);
@@ -209,7 +187,9 @@ input:checked + .slider:before {
     height: 100vh;
 }
 
+/* Đảm bảo profile-header có position relative để các icon con định vị tuyệt đối */
 .personal-info-column .profile-header {
+    position: relative; /* Rất quan trọng! */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -217,25 +197,45 @@ input:checked + .slider:before {
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 20px;
-    position: relative; /* Quan trọng cho icon chỉnh sửa */
+}
+
+/* Định vị icon chỉnh sửa */
+.edit-icon-near-avatar {
+    position: absolute;
+    top: 25px; /* Giữ nguyên hoặc điều chỉnh nếu cần */
+    right: 25px; /* Giữ nguyên hoặc điều chỉnh nếu cần */
+    color: var(--primary-color);
+    font-size: 20px;
+    background-color: var(--background-color);
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.edit-icon-near-avatar:hover {
+    color: var(--text-color); 
+    background-color: var(--primary-color); 
+    transform: scale(1.1); 
+    cursor: pointer;
 }
 
 /* HIỆU ỨNG ĐỔI ẢNH KHI HOVER VÀ GỢN SÓNG CHO AVATAR */
 .profile-photo-wrapper {
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    width: 250px; /* Giảm từ 400px */
-    height: 250px; /* Giảm từ 400px */
+    width: 250px; 
+    height: 250px; 
     border-radius: 50%;
     border: 4px solid var(--primary-color);
     margin-bottom: 20px;
     position: relative;
-    overflow: hidden; /* Đảm bảo ảnh chính và ảnh hover được cắt tròn */
-    transition: border-color 0.3s ease; /* Chuyển màu border mượt mà */
-    box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Thêm bóng nhẹ */
+    overflow: hidden; 
+    transition: border-color 0.3s ease; 
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); 
 }
 
 .profile-photo-wrapper:hover {
-    overflow: visible; /* Cho phép hiệu ứng gợn sóng hiển thị bên ngoài */
+    overflow: visible; 
 }
 
 .profile-photo-main,
@@ -251,10 +251,9 @@ input:checked + .slider:before {
 }
 
 .profile-photo-hover {
-    opacity: 0; /* Mặc định ảnh hover ẩn đi */
+    opacity: 0; 
 }
 
-/* Hiệu ứng đổi ảnh chính khi hover */
 .profile-photo-wrapper:hover .profile-photo-main {
     opacity: 0;
 }
@@ -275,7 +274,7 @@ input:checked + .slider:before {
     border: 2px solid var(--primary-color);
     opacity: 0;
     z-index: -1;
-    transition: all 0.7s ease-out; /* Chuyển động mượt mà */
+    transition: all 0.7s ease-out; 
 }
 
 .profile-photo-wrapper:hover::before,
@@ -285,7 +284,7 @@ input:checked + .slider:before {
 }
 
 .profile-photo-wrapper:hover::after {
-    animation-delay: 0.5s; /* Hiệu ứng gợn sóng thứ hai chậm hơn */
+    animation-delay: 0.5s; 
 }
 
 @keyframes ripple-border {
@@ -295,7 +294,7 @@ input:checked + .slider:before {
         opacity: 0.8;
     }
     100% {
-        width: 150%; /* Kích thước tối đa của gợn sóng */
+        width: 150%; 
         height: 150%;
         opacity: 0;
     }
@@ -307,19 +306,19 @@ input:checked + .slider:before {
     margin: 0;
     color: var(--primary-color);
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.2em; /* Giữ nguyên kích thước font chữ */
+    font-size: 2.2em; 
 }
 
 .personal-info-column .tagline {
     font-style: italic;
     color: var(--secondary-color);
-    margin: 8px 0 0; /* Tăng khoảng cách trên tagline */
-    font-size: 1.1em; /* Giữ nguyên kích thước font chữ */
-    white-space: nowrap; /* Ngăn chữ bị ngắt dòng */
-    overflow: hidden; /* Ẩn phần chữ tràn ra ngoài */
-    display: inline-block; /* Quan trọng để animation hoạt động */
-    border-right: 2px solid transparent; /* Tạo hiệu ứng con trỏ */
-    animation: typing-cursor 0.75s infinite; /* Hiệu ứng con trỏ nhấp nháy */
+    margin: 8px 0 0; 
+    font-size: 1.1em; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    display: inline-block; 
+    border-right: 2px solid transparent; 
+    animation: typing-cursor 0.75s infinite; 
 }
 
 /* KEYFRAMES CHO HIỆU ỨNG CHỮ CHẠY */
@@ -336,8 +335,7 @@ input:checked + .slider:before {
 /* Khi JavaScript thêm các span cho từng ký tự */
 .char-typing-effect {
     opacity: 0;
-    animation: fade-in-char 0.05s forwards; /* Thời gian xuất hiện của từng ký tự */
-    /* animation-delay sẽ được đặt bởi JavaScript */
+    animation: fade-in-char 0.05s forwards; 
 }
 
 @keyframes fade-in-char {
@@ -348,9 +346,8 @@ input:checked + .slider:before {
 
 .personal-info-column .contact-details,
 .personal-info-column .about-me {
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    padding-bottom: 15px; /* Giảm từ 20px */
-    margin-bottom: 15px; /* Giảm từ 20px */
+    padding-bottom: 15px; 
+    margin-bottom: 15px; 
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -361,33 +358,31 @@ input:checked + .slider:before {
 
 /* Điều chỉnh phân bố chữ trong mục thông tin */
 .personal-info-column .contact-details p {
-    margin: 8px 0; /* Tăng khoảng cách giữa các dòng thông tin liên hệ */
-    line-height: 1.8; /* Tăng chiều cao dòng để giãn chữ */
-    text-align: justify; /* Căn đều chữ cho đoạn văn bản */
-    text-align-last: center; /* Căn giữa dòng cuối của đoạn văn bản */
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    padding: 0 5px; /* Giảm từ 10px để chữ không quá sát lề */
-    font-size: 1.5em; /* Giữ nguyên kích thước font chữ */
+    margin: 8px 0; 
+    line-height: 1.8; 
+    text-align: justify; 
+    text-align-last: center; 
+    padding: 0 5px; 
+    font-size: 1.5em; 
 }
 
 .personal-info-column .about-me p {
-    margin: 10px 0; /* Tăng khoảng cách giữa các đoạn văn bản */
-    line-height: 1.7; /* Tăng chiều cao dòng để giãn chữ */
-    text-align: justify; /* Căn đều chữ cho đoạn văn bản */
-    text-align-last: center; /* Căn giữa dòng cuối của đoạn văn bản */
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    padding: 0 5px; /* Giảm từ 10px để chữ không quá sát lề */
-    font-size: 1.7em; /* Giữ nguyên kích thước font chữ */
+    margin: 10px 0; 
+    line-height: 1.7; 
+    text-align: justify; 
+    text-align-last: center; 
+    padding: 0 5px; 
+    font-size: 1.7em; 
 }
 
 .personal-info-column .about-me h2,
 .personal-info-column .contact-details h2 {
     color: var(--primary-color);
-    font-family: 'Montserrat', sans-serif; /* Đảm bảo font nhất quán */
-    font-size: 1.7em; /* Giữ nguyên kích thước font chữ */
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 1.7em; 
     margin-top: 0;
-    margin-bottom: 15px; /* Tăng khoảng cách dưới tiêu đề */
-    text-align: center; /* Căn giữa tiêu đề */
+    margin-bottom: 15px; 
+    text-align: center; 
 }
 
 
@@ -395,16 +390,14 @@ input:checked + .slider:before {
 .scrollable-content-column {
     flex-grow: 1;
     overflow-y: auto;
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    padding: 20px 25px; /* Giảm padding ngang từ 40px xuống 25px */
+    padding: 20px 25px; 
     box-sizing: border-box;
 }
 
 /* Sections within the scrollable content */
 .section {
     background-color: var(--section-bg);
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-    padding: 20px; /* Giảm từ 30px */
+    padding: 20px; 
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: var(--box-shadow);
@@ -416,13 +409,13 @@ input:checked + .slider:before {
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
     margin-bottom: 20px;
-    font-size: 2em; /* Giữ nguyên kích thước font chữ */
+    font-size: 2em; 
 }
 
 /* --- STYLE CHO MỤC SỞ THÍCH (VỚI ẢNH NỀN CỐ ĐỊNH) --- */
 .hobbies-section {
-    position: relative; /* Quan trọng để pseudo-element overlay hoạt động */
-    background-color: var(--section-bg);  
+    position: relative; 
+    background-color: var(--section-bg);
     padding: 30px;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -435,12 +428,12 @@ input:checked + .slider:before {
     text-align: left;
 
     /* CỐ ĐỊNH ẢNH NỀN Ở ĐÂY */
-    background-image: var(--hobby-bg-image);  
+    background-image: var(--hobby-bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: white; /* Đổi màu chữ sang trắng để dễ đọc trên ảnh */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Thêm đổ bóng chữ */
+    color: white; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); 
 }
 
 /* Lớp phủ sẽ luôn hiện diện */
@@ -451,24 +444,24 @@ input:checked + .slider:before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4); /* Lớp phủ màu đen với độ mờ 40% */
+    background-color: rgba(0, 0, 0, 0.4); 
     border-radius: 8px;
-    z-index: 1; /* Đặt z-index cao hơn nền nhưng thấp hơn nội dung */
-    transition: background-color 0.5s ease-in-out; /* Vẫn giữ transition cho lớp phủ */
+    z-index: 1; 
+    transition: background-color 0.5s ease-in-out; 
 }
 
 /* Đảm bảo nội dung nằm trên lớp phủ */
-.hobbies-section > * {  
+.hobbies-section > * {
     position: relative;
-    z-index: 2; /* Đảm bảo nội dung nằm trên lớp phủ */
+    z-index: 2; 
 }
 
 /* Tiêu đề và nội dung sẽ luôn có màu trắng trên ảnh nền */
-.hobbies-section h2, .hobbies-section h1 { /* Thêm h1 vì bạn dùng h1 trong HTML */
-    color: white; /* Luôn màu trắng */
-    border-bottom-color: white; /* Luôn màu trắng */
+.hobbies-section h2 { /* Không có h1 trong section này, nên tôi bỏ h1 */
+    color: white; 
+    border-bottom-color: white; 
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.5em; /* Giữ nguyên kích thước font chữ */
+    font-size: 2.5em; 
     text-align: left;
     padding-bottom: 10px;
     margin-bottom: 15px;
@@ -477,65 +470,41 @@ input:checked + .slider:before {
 }
 
 .hobbies-section ul {
-    list-style: none; /* Giữ nguyên để bỏ dấu chấm đầu dòng */
+    list-style: none; 
     padding: 0;
     margin: 10px 0 20px 0;
     width: 100%;
-    text-align: left; /* Căn chỉnh nội dung list bên trái */
+    text-align: left; 
 }
 
 .hobbies-section ul li {
-    display: list-item; /* Dòng mới để mỗi mục xuống dòng */
+    display: list-item; 
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
-    margin-bottom: 5px; /* THAY margin-right BẰNG margin-bottom ĐỂ TẠO KHOẢNG CÁCH KHI XUỐNG DÒNG */
-    font-size: 1.5em; /* Giữ nguyên kích thước font chữ */
+    margin-bottom: 5px; 
+    font-size: 1.5em; 
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
-    width: fit-content; /* Đảm bảo chiều rộng chỉ vừa đủ nội dung */
+    width: fit-content; 
 }
 
 /* Điều chỉnh lại màu sắc cho chế độ tối (nếu ảnh nền khác nhau) */
 body.dark-theme .hobbies-section {
-    background-image: var(--hobby-bg-image); /* Vẫn dùng biến để có thể đổi ảnh riêng cho dark theme */
-    color: white; /* Chữ trắng trên nền ảnh */
+    background-image: var(--hobby-bg-image); 
+    color: white; 
     text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
-body.dark-theme .hobbies-section h2, body.dark-theme .hobbies-section h1 {
-    color: white; /* Tiêu đề trắng trên nền ảnh */
+body.dark-theme .hobbies-section h2 { /* Chỉ h2 */
+    color: white; 
     border-bottom-color: white;
 }
 
 body.dark-theme .hobbies-section ul li {
-    background-color: rgba(0, 0, 0, 0.4); /* Nền tối hơn cho tag trong dark theme */
+    background-color: rgba(0, 0, 0, 0.4); 
 }
 /* --- KẾT THÚC STYLE CHO MỤC SỞ THÍCH --- */
-
-
-/* ICON CHỈNH SỬA CV */
-.edit-icon-near-avatar {
-    position: absolute;
-    top: 10px; /* Điều chỉnh vị trí từ trên xuống */
-    right: 10px; /* Điều chỉnh vị trí từ phải sang */
-    color: var(--primary-color);
-    font-size: 20px;
-    background-color: var(--background-color);
-    padding: 8px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.edit-icon-near-avatar:hover {
-    color: var(--text-color); /* Màu chữ khi hover, ví dụ: dùng text-color cho tương phản */
-    background-color: var(--primary-color); /* Màu nền khi hover */
-    transform: scale(1.1); /* Phóng to nhẹ khi hover */
-    cursor: pointer;
-}
-/* KẾT THÚC ICON CHỈNH SỬA CV */
 
 
 .entry-item {
@@ -551,7 +520,7 @@ body.dark-theme .hobbies-section ul li {
 .entry-item h3 {
     margin: 0 0 5px 0;
     color: var(--secondary-color);
-    font-size: 2.5em; /* Giữ nguyên kích thước font chữ */
+    font-size: 2.5em; 
 }
 
 .entry-item .period {
@@ -569,54 +538,53 @@ body.dark-theme .hobbies-section ul li {
 
 .entry-item ul li {
     margin-bottom: 5px;
-    font-size: 1.7em; /* Giữ nguyên kích thước font chữ */
+    font-size: 1.7em; 
 }
 
 .links a {
     color: var(--link-color);
     text-decoration: none;
     margin-right: 15px;
-    margin-right: 1%;
-}
-/* CSS để định kiểu cho tiêu đề dự án và icon */
-.project-title-wrapper {
-    display: flex; /* Biến h3 thành flex container */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    margin: 0 0 5px 0; /* Giữ nguyên margin của h3 */
 }
 
-.project-link {
-    display: flex; /* Biến liên kết thành flex container */
-    align-items: center; /* Căn giữa nội dung (chữ và icon) */
-    gap: 8px; /* Khoảng cách giữa chữ và icon */
-    color: var(--secondary-color); /* Sử dụng màu chữ phù hợp với theme của bạn */
-    text-decoration: none; /* Bỏ gạch chân mặc định của liên kết */
-    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu khi hover */
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* CSS để định kiểu cho tiêu đề dự án và icon */
+.project-title-wrapper { /* Bạn không có lớp này trong HTML, nhưng tôi giữ lại nếu bạn định dùng sau này */
+    display: flex; 
+    align-items: center; 
+    margin: 0 0 5px 0; 
+}
+
+.project-link { /* Bạn không có lớp này trong HTML, nhưng tôi giữ lại nếu bạn định dùng sau này */
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    color: var(--secondary-color); 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
 }
 
 .project-link:hover {
-    color: var(--primary-color); /* Màu khi hover, ví dụ màu nhấn chính */
-    text-decoration: none; /* Đảm bảo không có gạch chân khi hover nếu không muốn */
+    color: var(--primary-color); 
+    text-decoration: none; 
 }
 
-.project-icon {
-    font-size: 1.5em; /* Kích thước icon nhỏ hơn so với chữ tiêu đề */
-    color: var(--secondary-color); /* Màu icon */
-    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu khi hover */
+.project-icon { /* Bạn không có lớp này trong HTML, nhưng tôi giữ lại nếu bạn định dùng sau này */
+    font-size: 1.5em; 
+    color: var(--secondary-color); 
+    transition: color 0.3s ease; 
 }
 
 .project-link:hover .project-icon {
-    color: var(--primary-color); /* Icon đổi màu khi hover */
+    color: var(--primary-color); 
 }
 
-/* Đảm bảo các thuộc tính font-size cũ của .entry-item h3 vẫn được áp dụng qua .project-title-wrapper */
+/* Đảm bảo các thuộc tính font-size cũ của .entry-item h3 vẫn được áp dụng */
 .entry-item h3 {
-    /* Đảm bảo không có display flex hoặc align-items trực tiếp ở đây nữa */
-    /* Các thuộc tính khác của h3 như font-size vẫn giữ nguyên */
-    font-size: 2em; /* Giữ nguyên kích thước font chữ của tiêu đề dự án */
-}
-.links a:hover {
-    text-decoration: underline;
+    font-size: 2em; 
 }
 
 /* Skills Section Specifics */
@@ -629,7 +597,7 @@ body.dark-theme .hobbies-section ul li {
     border-bottom: 1px dashed var(--border-color);
     padding-bottom: 5px;
     margin-bottom: 10px;
-    font-size: 1.7em; /* Giữ nguyên kích thước font chữ */
+    font-size: 1.7em; 
 }
 
 .skills-category p, .skills-category ul {
@@ -639,7 +607,7 @@ body.dark-theme .hobbies-section ul li {
 }
 
 .skills-category p {
-    font-size: 1.5em; /* Giữ nguyên kích thước font chữ */
+    font-size: 1.5em; 
 }
 
 /* Social Links in Contact Section */
@@ -647,7 +615,7 @@ body.dark-theme .hobbies-section ul li {
     display: flex;
     gap: 20px;
     margin-top: 15px;
-    justify-content: center; /* Căn giữa các icon mạng xã hội */
+    justify-content: center; 
 }
 
 .social-links a {
@@ -661,10 +629,10 @@ body.dark-theme .hobbies-section ul li {
 
 /* Kích thước icon Font Awesome */
 .social-links a i {
-    font-size: 3em; /* Giữ nguyên kích thước icon */
+    font-size: 3em; 
 }
 
-/* Footer */
+/* Footer (Bạn chưa có footer trong HTML, nhưng CSS vẫn được giữ) */
 footer {
     text-align: center;
     padding: 20px;
@@ -686,30 +654,30 @@ footer {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6); /* Nền mờ */
-    z-index: 1050; /* Đảm bảo nằm trên các phần tử khác */
+    z-index: 1050; 
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px); /* Hiệu ứng làm mờ nền */
-    -webkit-backdrop-filter: blur(5px); /* Hỗ trợ Safari */
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px); 
 }
 
 .edit-modal-overlay.active {
-    display: flex; /* Hiển thị khi được kích hoạt bởi JS */
+    display: flex; 
 }
 
 /* Hộp modal */
 .edit-modal-content {
     background-color: var(--section-bg);
     padding: 30px;
-    border-radius: 12px; /* Góc bo tròn hơn */
+    border-radius: 12px; 
     box-shadow: var(--box-shadow);
     width: 90%;
-    max-width: 600px; /* Chiều rộng tối đa của modal */
+    max-width: 600px; 
     position: relative;
-    transform: translateY(-20px); /* Hiệu ứng trượt nhẹ từ trên xuống */
+    transform: translateY(-20px); 
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    border: 1px solid var(--border-color); /* Thêm viền nhẹ */
+    border: 1px solid var(--border-color); 
 }
 
 .edit-modal-overlay.active .edit-modal-content {
@@ -717,13 +685,12 @@ footer {
     opacity: 1;
 }
 
-
 /* Tiêu đề modal */
 .edit-modal-content h2 {
     color: var(--primary-color);
     font-family: 'Montserrat', sans-serif;
     margin-top: 0;
-    margin-bottom: 25px; /* Tăng khoảng cách dưới tiêu đề */
+    margin-bottom: 25px; 
     text-align: center;
     font-size: 1.8em;
     border-bottom: 2px solid var(--primary-color);
@@ -732,12 +699,12 @@ footer {
 
 /* Các trường form trong modal */
 .edit-modal-content .form-group {
-    margin-bottom: 20px; /* Khoảng cách giữa các nhóm form */
+    margin-bottom: 20px; 
 }
 
 .edit-modal-content label {
     display: block;
-    margin-bottom: 8px; /* Khoảng cách giữa label và input */
+    margin-bottom: 8px; 
     color: var(--text-color);
     font-weight: bold;
     font-size: 0.95em;
@@ -748,13 +715,13 @@ footer {
 .edit-modal-content input[type="tel"],
 .edit-modal-content textarea {
     width: 100%;
-    padding: 12px; /* Tăng padding để input rộng rãi hơn */
+    padding: 12px; 
     border: 1px solid var(--border-color);
-    border-radius: 8px; /* Góc bo tròn cho input */
+    border-radius: 8px; 
     font-size: 1em;
     color: var(--text-color);
-    background-color: var(--background-color); /* Nền input theo theme */
-    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+    background-color: var(--background-color); 
+    box-sizing: border-box; 
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -763,14 +730,13 @@ footer {
 .edit-modal-content input[type="tel"]:focus,
 .edit-modal-content textarea:focus {
     border-color: var(--primary-color);
-    /* Sử dụng var(--primary-color-rgb) để tạo màu rgba động */
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25); 
-    outline: none; /* Bỏ outline mặc định của trình duyệt */
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+    outline: none; 
 }
 
 .edit-modal-content textarea {
-    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
-    min-height: 80px; /* Chiều cao tối thiểu cho textarea */
+    resize: vertical; 
+    min-height: 80px; 
 }
 
 /* Nút đóng modal */
@@ -780,7 +746,7 @@ footer {
     right: 15px;
     background: none;
     border: none;
-    font-size: 1.8em; /* Kích thước lớn hơn cho dễ bấm */
+    font-size: 1.8em; 
     color: var(--secondary-color);
     cursor: pointer;
     transition: color 0.3s ease;
@@ -793,13 +759,13 @@ footer {
 /* Nút lưu/hủy */
 .edit-modal-content .modal-actions {
     display: flex;
-    justify-content: flex-end; /* Căn phải các nút */
-    gap: 15px; /* Khoảng cách giữa các nút */
-    margin-top: 30px; /* Khoảng cách trên từ form đến nút */
+    justify-content: flex-end; 
+    gap: 15px; 
+    margin-top: 30px; 
 }
 
 .edit-modal-content .modal-actions button {
-    padding: 12px 25px; /* Tăng padding cho nút */
+    padding: 12px 25px; 
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -814,7 +780,7 @@ footer {
 }
 
 .edit-modal-content .modal-actions .save-btn:hover {
-    background-color: var(--primary-color-darker); /* Dùng biến mới cho màu hover */
+    background-color: var(--primary-color-darker); 
 }
 
 .edit-modal-content .modal-actions .cancel-btn {
@@ -823,18 +789,16 @@ footer {
 }
 
 .edit-modal-content .modal-actions .cancel-btn:hover {
-    background-color: #c0c0c0; /* Màu xám đậm hơn */
+    background-color: #c0c0c0; 
     color: var(--text-color);
 }
 
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 992px) {
     .personal-info-column {
-        /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
-        width: 300px; /* Giảm thêm trên màn hình trung bình */
+        width: 300px; 
     }
     .profile-photo-wrapper {
-        /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH */
         width: 200px;
         height: 200px;
     }
@@ -847,35 +811,48 @@ footer {
     }
 
     .cv-nav-icons {
-        position: static;
+        position: static; /* Thay đổi từ fixed sang static */
         width: 100%;
         height: auto;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: row; /* Hàng ngang cho mobile */
+        justify-content: space-around; 
         padding: 10px 0;
         box-shadow: var(--box-shadow);
         border-bottom: 1px solid var(--border-color);
+        /* Thêm thuộc tính flex-wrap để các item có thể xuống dòng nếu không đủ chỗ */
+        flex-wrap: wrap; 
     }
 
+    /* Đảm bảo các link vẫn phân bố đều khi nav bar là hàng ngang */
     .cv-nav-icons a {
         font-size: 1.5em;
         padding: 10px;
+        flex-grow: 1; /* Cho phép các link giãn ra */
+        min-width: 50px; /* Giới hạn kích thước tối thiểu cho icon */
     }
 
+    /* Ẩn .nav-links-group trên mobile để các link trực tiếp là flex items */
+    .nav-links-group {
+        display: contents; /* Hiển thị nội dung con trực tiếp trong container cha */
+        /* Bỏ các thuộc tính flexbox không cần thiết khi display: contents; */
+        flex-grow: unset;
+        justify-content: unset;
+        padding-bottom: 0;
+    }
+
+    /* Điều chỉnh theme-switch-wrapper trên mobile */
     .theme-switch-wrapper {
-        position: static;
-        margin-top: 10px;
-        flex-direction: row;
+        position: static; /* Quan trọng: Loại bỏ mọi định vị tuyệt đối/cố định */
+        margin-top: 10px; /* Thêm khoảng cách nếu cần */
+        margin-bottom: 10px; /* Khoảng cách với phần nội dung chính */
+        flex-direction: row; /* Chuyển sang hàng ngang */
         gap: 10px;
         width: auto;
+        /* Nếu bạn muốn nó nằm riêng một hàng hoặc căn giữa, có thể thêm margin: auto; */
+        justify-content: center; 
+        align-self: center; /* Tự căn giữa trong flex container của nav */
     }
-    /* ĐIỀU CHỈNH ĐỂ GIẢM KÍCH THƯỚC KHUNG/ẢNH - Khi di chuyển theme-switch-wrapper vào vị trí static */
-    .theme-switch-wrapper.icon-position {
-        position: static; /* Bỏ position absolute */
-        top: auto;
-        right: auto;
-    }
-
+    
     .main-layout-wrapper {
         flex-direction: column;
         margin-left: 0;
@@ -914,8 +891,7 @@ footer {
     .hobbies-section {
         text-align: center;
         padding: 20px;
-        /* Vẫn giữ ảnh nền trên mobile nếu muốn */
-        background-image: var(--hobby-bg-image);  
+        background-image: var(--hobby-bg-image);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -928,10 +904,15 @@ footer {
         padding: 0;
     }
 
-    .hobbies-section h2, .hobbies-section h1 { /* Đảm bảo cả h1 và h2 được căn giữa trên mobile */
+    .hobbies-section h2 { /* Chỉ h2 */
         text-align: center;
     }
 
+    .hobbies-section ul li {
+        width: 100%; /* Đảm bảo các mục list chiếm toàn bộ chiều rộng */
+        text-align: center; /* Căn giữa nội dung list item */
+        margin-right: 0; /* Đảm bảo không có margin bên phải thừa */
+    }
 
     .scrollable-content-column {
         overflow-y: visible;
@@ -952,8 +933,8 @@ footer {
         margin-bottom: 20px;
     }
     .edit-modal-content .modal-actions {
-        flex-direction: column; /* Nút xếp chồng lên nhau */
-        align-items: stretch; /* Kéo dài nút ra */
+        flex-direction: column; 
+        align-items: stretch; 
     }
     .edit-modal-content .modal-actions button {
         width: 100%;

@@ -11,13 +11,21 @@
 <body>
 
     <nav class="cv-nav-icons">
-        <a href="#personal-info" title="Thông tin cá nhân"><i class="fas fa-user"></i></a>
-        <a href="#hobbies" title="Sở thích"><i class="fas fa-heart"></i></a>
-        <a href="#education" title="Học vấn"><i class="fas fa-graduation-cap"></i></a>
-        <a href="#skills" title="Kỹ năng"><i class="fas fa-tools"></i></a>
-        <a href="#projects" title="Dự án"><i class="fas fa-project-diagram"></i></a>
+        <div class="nav-links-group">
+            <a href="#personal-info" title="Thông tin cá nhân"><i class="fas fa-user"></i></a>
+            <a href="#hobbies" title="Sở thích"><i class="fas fa-heart"></i></a>
+            <a href="#education" title="Học vấn"><i class="fas fa-graduation-cap"></i></a>
+            <a href="#skills" title="Kỹ năng"><i class="fas fa-tools"></i></a>
+            <a href="#projects" title="Dự án"><i class="fas fa-project-diagram"></i></a>
+        </div>
         
-      
+        <div class="theme-switch-wrapper"> 
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <span class="theme-text">Dark Mode</span>
+        </div>
     </nav>
 
     <div class="main-layout-wrapper">
@@ -30,25 +38,26 @@
                 </div>
                 <a href="#" class="edit-icon-near-avatar" id="editCvIcon" title="Chỉnh sửa CV"><i class="fas fa-pen-to-square"></i></a>
                 
-                <div class="theme-switch-wrapper icon-position"> 
-                    <label class="theme-switch" for="checkbox">
-                        <input type="checkbox" id="checkbox" />
-                        <div class="slider round"></div>
-                    </label>
-                    </div>
-                <h1 id="cvName">Lê Nguyễn Nhật Duy</h1> <p class="tagline" id="tagline-running-effect">Người con Miền Tây, Mister Grand Trà Vinh :3</p> </div>
+                <h1 id="cvName">Lê Nguyễn Nhật Duy</h1> 
+                <p class="tagline" id="tagline-running-effect">Người con Miền Tây </p> 
+            </div>
 
             <div class="contact-details">
                 <h2>Liên hệ</h2>
-                <p><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> <span id="contactAddress">Quận 12, TP. Hồ Chí Minh, Việt Nam</span></p> <p><i class="fas fa-phone" style="margin-right: 8px;"></i> <span id="contactPhone">(84) 559 589 316</span></p> <p><i class="fas fa-envelope" style="margin-right: 8px;"></i> <a href="mailto:duylnn1177@ut.edu.vn" id="contactEmail">duylnn1177@ut.edu.vn</a></p> <div class="social-links">
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> <span id="contactAddress">Quận 12, TP. Hồ Chí Minh, Việt Nam</span></p> 
+                <p><i class="fas fa-phone" style="margin-right: 8px;"></i> <span id="contactPhone">(84) 559 589 316</span></p> 
+                <p><i class="fas fa-envelope" style="margin-right: 8px;"></i> <a href="mailto:duylnn1177@ut.edu.vn" id="contactEmail">duylnn1177@ut.edu.vn</a></p> 
+                <div class="social-links">
                     <a href="https://www.instagram.com/nhatduyleng/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/NhatDuy-25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://www.facebook.com/nhatduy.l.ng" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
 
-            <div class="about-me" id="about-me-section"> <h2>Tóm tắt về tôi</h2>
-                <p id="aboutMeContent">Tôi là một sinh viên năng động với kinh nghiệm làm việc nhóm và kỹ năng giải quyết vấn đề. Tôi luôn tìm kiếm cơ hội học hỏi và phát triển bản thân trong lĩnh vực công nghệ.</p> </div>
+            <div class="about-me" id="about-me-section"> 
+                <h2>Tóm tắt về tôi</h2>
+                <p id="aboutMeContent">Tôi là một sinh viên năng động với kinh nghiệm làm việc nhóm và kỹ năng giải quyết vấn đề. Tôi luôn tìm kiếm cơ hội học hỏi và phát triển bản thân trong lĩnh vực công nghệ.</p> 
+            </div>
         </div>
 
         <div class="scrollable-content-column">
@@ -67,9 +76,8 @@
             <section class="section" id="education">
                 <h2>Học vấn</h2>
                 <div class="entry-item">
-                     <h3>Sinh Viên Trường Đại Học Giao Thông Vận Tải Thành Phố Hồ Chí Minh</h3>
-                   
-                     <p class="period">Sinh viên năm 2 chuyên ngành Công nghệ thông tin</p>
+                    <h3>Sinh Viên Trường Đại Học Giao Thông Vận Tải Thành Phố Hồ Chí Minh</h3>
+                    <p class="period">Sinh viên năm 2 chuyên ngành Công nghệ thông tin</p>
                     <ul>
                         <li>Cùng nhóm phát triển " Trang Web hẹn hò "</li>
                         <li>Các khóa học nổi bật: Cấu trúc dữ liệu & Thuật toán, Lập trình hướng đối tượng, Lâp trình Web, Cơ sở dữ liệu.</li>
@@ -104,15 +112,15 @@
             <section class="section" id="projects">
                 <h2>Dự án</h2>
                 <div class="entry-item">
-                    <h3> Thiết kế trang Web cá nhân ( 2025 )  </h3>
+                    <h3> Thiết kế trang Web cá nhân ( 2025 ) </h3>
                     <p class="period">Lập trình Web</p>
                     <ul>
-                        <li>Thiết kế trang cá nhân sinh viên  </li>
+                        <li>Thiết kế trang cá nhân sinh viên </li>
                         <li>Sử dụng MySQL, HTML, CSS và JavaScript để thực hiện dự án.</li>
                     </ul>
-                   <div class="links">
-    <a href="https://github.com/NhatDuy-25/Digital-CV.git" target="_blank" style="font-size: 1.7em;">Xem dự án</a>
-</div>
+                    <div class="links">
+                        <a href="https://github.com/NhatDuy-25/Digital-CV.git" target="_blank" style="font-size: 1.7em;">Xem dự án</a>
+                    </div>
                 </div>
                 <div class="entry-item">
                     <h3>Hiv-medical-service-system (2025) </h3>
@@ -123,12 +131,15 @@
                         <li>Tối ưu hóa SEO cơ bản và khả năng truy cập.</li>
                     </ul>
                     <div class="links">
-    <a href="https://github.com/VinhPhus/hiv-medical-service-system.git" target="_blank" style="font-size: 1.7em;">Xem dự án</a>
-</div>
+                        <a href="https://github.com/VinhPhus/hiv-medical-service-system.git" target="_blank" style="font-size: 1.7em;">Xem dự án</a>
+                    </div>
                 </div>
             </section>
 
-        </div> </div> <div id="editCvModal" class="edit-modal-overlay">
+        </div> 
+    </div> 
+
+    <div id="editCvModal" class="edit-modal-overlay">
         <div class="edit-modal-content">
             <button type="button" class="close-button">&times;</button>
             <h2>Chỉnh sửa thông tin cá nhân</h2>
@@ -157,7 +168,8 @@
                     <label for="editAboutMe">Về tôi:</label>
                     <textarea id="editAboutMe" name="editAboutMe"></textarea>
                 </div>
-                <div class="modal-actions"> <button type="button" class="cancel-btn">Hủy</button>
+                <div class="modal-actions"> 
+                    <button type="button" class="cancel-btn">Hủy</button>
                     <button type="submit" class="save-btn">Lưu Thay Đổi</button>
                 </div>
             </form>
